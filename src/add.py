@@ -1,57 +1,51 @@
 class NumberCombiner:
     """
-    A class that provides various methods to combine numbers using arithmetic operations.
+    @class NumberCombiner
+    @brief A class that provides various methods to combine numbers using arithmetic operations.
     """
     
     def add(self, a: float, b: float) -> float:
         """
-        Adds two numbers together.
+        @brief Adds two numbers together.
         
-        Parameters:
-        a (float): The first number.
-        b (float): The second number.
+        @param {float} a - The first number.
+        @param {float} b - The second number.
         
-        Returns:
-        float: The sum of the two numbers.
+        @return {float} - The sum of the two numbers.
         """
         return a + b
     
     def subtract(self, a: float, b: float) -> float:
         """
-        Subtracts the second number from the first.
+        @brief Subtracts the second number from the first.
         
-        Parameters:
-        a (float): The first number.
-        b (float): The second number.
+        @param {float} a - The first number.
+        @param {float} b - The second number.
         
-        Returns:
-        float: The difference between the two numbers.
+        @return {float} - The difference between the two numbers.
         """
         return a - b
     
     def multiply(self, a: float, b: float) -> float:
         """
-        Multiplies two numbers together.
+        @brief Multiplies two numbers together.
         
-        Parameters:
-        a (float): The first number.
-        b (float): The second number.
+        @param {float} a - The first number.
+        @param {float} b - The second number.
         
-        Returns:
-        float: The product of the two numbers.
+        @return {float} - The product of the two numbers.
         """
         return a * b
     
     def divide(self, a: float, b: float) -> float:
         """
-        Divides the first number by the second number.
+        @brief Divides the first number by the second.
         
-        Parameters:
-        a (float): The numerator.
-        b (float): The denominator (must not be zero).
+        @param {float} a - The numerator.
+        @param {float} b - The denominator (must not be zero).
         
-        Returns:
-        float: The quotient of the division.
+        @return {float} - The quotient of the division.
+        @throws ValueError - If b is zero.
         """
         if b == 0:
             raise ValueError("Division by zero is not allowed.")
@@ -59,27 +53,24 @@ class NumberCombiner:
     
     def power(self, a: float, b: float) -> float:
         """
-        Raises the first number to the power of the second number.
+        @brief Raises the first number to the power of the second.
         
-        Parameters:
-        a (float): The base number.
-        b (float): The exponent.
+        @param {float} a - The base number.
+        @param {float} b - The exponent.
         
-        Returns:
-        float: The result of raising 'a' to the power of 'b'.
+        @return {float} - The result of raising 'a' to the power of 'b'.
         """
         return a ** b
     
     def modulus(self, a: float, b: float) -> float:
         """
-        Returns the remainder of the division of the first number by the second number.
+        @brief Returns the remainder of the division of the first number by the second.
         
-        Parameters:
-        a (float): The dividend.
-        b (float): The divisor (must not be zero).
+        @param {float} a - The dividend.
+        @param {float} b - The divisor (must not be zero).
         
-        Returns:
-        float: The remainder of the division.
+        @return {float} - The remainder of the division.
+        @throws ValueError - If b is zero.
         """
         if b == 0:
             raise ValueError("Modulus by zero is not allowed.")
@@ -87,15 +78,18 @@ class NumberCombiner:
     
     def combine_all(self, a: float, b: float) -> dict:
         """
-        Performs all operations (addition, subtraction, multiplication, division, power, modulus) 
-        on the given numbers and returns a dictionary with results.
+        @brief Performs all arithmetic operations on the given numbers and returns a dictionary with results.
         
-        Parameters:
-        a (float): The first number.
-        b (float): The second number.
+        @param {float} a - The first number.
+        @param {float} b - The second number.
         
-        Returns:
-        dict: A dictionary containing the results of all operations.
+        @return {dict} - A dictionary containing the results of all operations:
+            - "addition": Result of addition.
+            - "subtraction": Result of subtraction.
+            - "multiplication": Result of multiplication.
+            - "division": Result of division (or "undefined" if division by zero).
+            - "power": Result of exponentiation.
+            - "modulus": Result of modulus (or "undefined" if modulus by zero).
         """
         results = {
             "addition": self.add(a, b),
