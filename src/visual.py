@@ -1,51 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-===============================================================================
-Dateiname    : visualisierungen_mit_klasse.py
-Beschreibung : Dieses Skript zeigt verschiedene Diagrammtypen anhand von 
-               Eingabedaten, die in einer Klasse gekapselt werden. Die Klasse 
-               'DataVisualizer' beinhaltet Methoden für Linien-, Balken-, 
-               Streu-, Histogramm- und Kreisdiagramme.
-===============================================================================
+@file visualisierungen_mit_klasse_doxygen.py
+@brief Dieses Skript zeigt verschiedene Diagrammtypen anhand von Eingabedaten,
+       die in einer Klasse gekapselt werden. Die Klasse DataVisualizer beinhaltet
+       Methoden für Linien-, Balken-, Streu-, Histogramm- und Kreisdiagramme.
 """
 
 import matplotlib.pyplot as plt
 import numpy as np
 
+## @class DataVisualizer
+#  @brief Eine Klasse zur Darstellung verschiedener Diagramme.
+#
+#  Diese Klasse kapselt Methoden zur Visualisierung von Diagrammen. Mit Hilfe
+#  dieser Klasse können Linien-, Balken-, Streu-, Histogramm- und Kreisdiagramme
+#  erstellt werden.
 class DataVisualizer:
-    """
-    ===============================================================================
-    Klasse     : DataVisualizer
-    Beschreibung: Diese Klasse kapselt verschiedene Methoden zur Darstellung 
-                  von Visualisierungen und Diagrammen. Jede Methode erstellt 
-                  ein Diagramm basierend auf den übergebenen Daten.
-    ===============================================================================
-    """
-
+    ## @brief Konstruktor der Klasse DataVisualizer.
+    #  @return None
     def __init__(self):
-        """
-        ===============================================================================
-        Funktion     : __init__
-        Beschreibung : Initialisiert eine Instanz der DataVisualizer-Klasse.
-        Parameter    : Keine.
-        Rückgabe     : Keine.
-        ===============================================================================
-        """
         pass
 
+    ## @brief Erstellt ein Liniendiagramm.
+    #  @param x Liste oder Array von Werten für die x-Achse.
+    #  @param y Liste oder Array von Werten für die y-Achse.
+    #  @param title Titel des Diagramms (Standard: "Linienchart").
+    #  @return None
     def plot_line_chart(self, x, y, title="Linienchart"):
-        """
-        ===============================================================================
-        Methode    : plot_line_chart
-        Beschreibung: Erzeugt ein Liniendiagramm anhand der übergebenen x- und y-Daten.
-        Parameter   :
-                      - x: Liste oder Array von Werten für die x-Achse.
-                      - y: Liste oder Array von Werten für die y-Achse.
-                      - title: Titel des Diagramms (Standard: 'Linienchart').
-        Rückgabe    : Keine, es wird ein Diagramm angezeigt.
-        ===============================================================================
-        """
         plt.figure()
         plt.plot(x, y, marker='o', linestyle='-', linewidth=2)
         plt.title(title)
@@ -55,18 +37,12 @@ class DataVisualizer:
         plt.tight_layout()
         plt.show()
 
+    ## @brief Erstellt ein Balkendiagramm.
+    #  @param categories Liste von Kategorien (x-Achse).
+    #  @param values Liste von Werten, die die Höhe der Balken darstellen.
+    #  @param title Titel des Diagramms (Standard: "Balkendiagramm").
+    #  @return None
     def plot_bar_chart(self, categories, values, title="Balkendiagramm"):
-        """
-        ===============================================================================
-        Methode    : plot_bar_chart
-        Beschreibung: Erstellt ein Balkendiagramm basierend auf Kategorien und zugehörigen Werten.
-        Parameter   :
-                      - categories: Liste von Kategorien (x-Achse).
-                      - values: Liste von Werten (Höhe der Balken).
-                      - title: Titel des Diagramms (Standard: 'Balkendiagramm').
-        Rückgabe    : Keine, es wird ein Diagramm angezeigt.
-        ===============================================================================
-        """
         plt.figure()
         plt.bar(categories, values)
         plt.title(title)
@@ -75,18 +51,12 @@ class DataVisualizer:
         plt.tight_layout()
         plt.show()
 
+    ## @brief Erstellt ein Streudiagramm.
+    #  @param x Liste oder Array von Werten für die x-Achse.
+    #  @param y Liste oder Array von Werten für die y-Achse.
+    #  @param title Titel des Diagramms (Standard: "Streudiagramm").
+    #  @return None
     def plot_scatter_chart(self, x, y, title="Streudiagramm"):
-        """
-        ===============================================================================
-        Methode    : plot_scatter_chart
-        Beschreibung: Erzeugt ein Streudiagramm anhand der übergebenen x- und y-Daten.
-        Parameter   :
-                      - x: Liste oder Array von Werten für die x-Achse.
-                      - y: Liste oder Array von Werten für die y-Achse.
-                      - title: Titel des Diagramms (Standard: 'Streudiagramm').
-        Rückgabe    : Keine, es wird ein Diagramm angezeigt.
-        ===============================================================================
-        """
         plt.figure()
         plt.scatter(x, y)
         plt.title(title)
@@ -96,18 +66,12 @@ class DataVisualizer:
         plt.tight_layout()
         plt.show()
 
+    ## @brief Erstellt ein Histogramm.
+    #  @param data Liste oder Array von Werten.
+    #  @param bins Anzahl der Balken im Histogramm (Standard: 10).
+    #  @param title Titel des Diagramms (Standard: "Histogramm").
+    #  @return None
     def plot_histogram(self, data, bins=10, title="Histogramm"):
-        """
-        ===============================================================================
-        Methode    : plot_histogram
-        Beschreibung: Erstellt ein Histogramm aus den übergebenen Daten.
-        Parameter   :
-                      - data: Liste oder Array von Werten.
-                      - bins: Anzahl der Balken (Standard: 10).
-                      - title: Titel des Diagramms (Standard: 'Histogramm').
-        Rückgabe    : Keine, es wird ein Diagramm angezeigt.
-        ===============================================================================
-        """
         plt.figure()
         plt.hist(data, bins=bins, edgecolor='black')
         plt.title(title)
@@ -116,18 +80,12 @@ class DataVisualizer:
         plt.tight_layout()
         plt.show()
 
+    ## @brief Erstellt ein Kreisdiagramm.
+    #  @param labels Liste von Beschriftungen für die Segmente.
+    #  @param sizes Liste von Größenanteilen für die Segmente.
+    #  @param title Titel des Diagramms (Standard: "Kreisdiagramm").
+    #  @return None
     def plot_pie_chart(self, labels, sizes, title="Kreisdiagramm"):
-        """
-        ===============================================================================
-        Methode    : plot_pie_chart
-        Beschreibung: Erzeugt ein Kreisdiagramm anhand der übergebenen Labels und Größen.
-        Parameter   :
-                      - labels: Liste von Beschriftungen für die Segmente.
-                      - sizes: Liste von Größenanteilen für die Segmente.
-                      - title: Titel des Diagramms (Standard: 'Kreisdiagramm').
-        Rückgabe    : Keine, es wird ein Diagramm angezeigt.
-        ===============================================================================
-        """
         plt.figure()
         plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
         plt.title(title)
@@ -135,15 +93,9 @@ class DataVisualizer:
         plt.tight_layout()
         plt.show()
 
+## @brief Hauptfunktion zur Demonstration der DataVisualizer-Klasse.
+#  @return None
 def main():
-    """
-    ===============================================================================
-    Funktion : main
-    Beschreibung: Beispielhafte Verwendung der DataVisualizer-Klasse mit Beispiel-Daten.
-    Parameter: Keine.
-    Rückgabe : Keine.
-    ===============================================================================
-    """
     # Instanziiere die DataVisualizer-Klasse
     visualizer = DataVisualizer()
 
