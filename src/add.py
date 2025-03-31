@@ -2,8 +2,16 @@ class NumberCombiner:
     """
     @class NumberCombiner
     @brief A class that provides various methods to combine numbers using arithmetic operations.
-    """
     
+    Class Attributes:
+        version (str): The current version of the NumberCombiner class.
+        supported_operations (list): A list of all arithmetic operations supported by this class.
+        default_value (float): A default numerical value used as a fallback.
+    """
+    version = "1.0"
+    supported_operations = ["addition", "subtraction", "multiplication", "division", "power", "modulus"]
+    default_value = 0.0
+
     def add(self, a: float, b: float) -> float:
         """
         @brief Adds two numbers together.
@@ -14,7 +22,7 @@ class NumberCombiner:
         @return {float} - The sum of the two numbers.
         """
         return a + b
-    
+
     def subtract(self, a: float, b: float) -> float:
         """
         @brief Subtracts the second number from the first.
@@ -25,7 +33,7 @@ class NumberCombiner:
         @return {float} - The difference between the two numbers.
         """
         return a - b
-    
+
     def multiply(self, a: float, b: float) -> float:
         """
         @brief Multiplies two numbers together.
@@ -36,7 +44,7 @@ class NumberCombiner:
         @return {float} - The product of the two numbers.
         """
         return a * b
-    
+
     def divide(self, a: float, b: float) -> float:
         """
         @brief Divides the first number by the second.
@@ -50,7 +58,7 @@ class NumberCombiner:
         if b == 0:
             raise ValueError("Division by zero is not allowed.")
         return a / b
-    
+
     def power(self, a: float, b: float) -> float:
         """
         @brief Raises the first number to the power of the second.
@@ -61,7 +69,7 @@ class NumberCombiner:
         @return {float} - The result of raising 'a' to the power of 'b'.
         """
         return a ** b
-    
+
     def modulus(self, a: float, b: float) -> float:
         """
         @brief Returns the remainder of the division of the first number by the second.
@@ -75,7 +83,7 @@ class NumberCombiner:
         if b == 0:
             raise ValueError("Modulus by zero is not allowed.")
         return a % b
-    
+
     def combine_all(self, a: float, b: float) -> dict:
         """
         @brief Performs all arithmetic operations on the given numbers and returns a dictionary with results.
@@ -105,4 +113,6 @@ class NumberCombiner:
 if __name__ == "__main__":
     combiner = NumberCombiner()
     num1, num2 = 10, 3
+    print("Class version:", NumberCombiner.version)
+    print("Supported operations:", NumberCombiner.supported_operations)
     print(combiner.combine_all(num1, num2))
