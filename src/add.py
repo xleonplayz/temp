@@ -3,23 +3,38 @@ class NumberCombiner:
     @class NumberCombiner
     @brief A class that provides various methods to combine numbers using arithmetic operations.
     
-    Class Attributes:
-        version (str): The current version of the NumberCombiner class.
-        supported_operations (list): A list of all arithmetic operations supported by this class.
-        default_value (float): A default numerical value used as a fallback.
+    @details This class supports several arithmetic operations such as addition, subtraction,
+             multiplication, division, exponentiation, and modulus. It also holds instance attributes 
+             that must be provided during object construction.
+    
+    @var version
+        The current version of the NumberCombiner instance.
+    @var supported_operations
+        A list of all arithmetic operations supported by this instance.
+    @var default_value
+        A default numerical value used as a fallback.
     """
-    version = "1.0"
-    supported_operations = ["addition", "subtraction", "multiplication", "division", "power", "modulus"]
-    default_value = 0.0
+
+    def __init__(self, version: str, supported_operations: list, default_value: float):
+        """
+        @brief Constructor for NumberCombiner.
+        
+        @param version The version string of this NumberCombiner instance.
+        @param supported_operations A list of operations supported by this instance.
+        @param default_value The default value used as a fallback.
+        """
+        self.version = version
+        self.supported_operations = supported_operations
+        self.default_value = default_value
 
     def add(self, a: float, b: float) -> float:
         """
         @brief Adds two numbers together.
         
-        @param {float} a - The first number.
-        @param {float} b - The second number.
+        @param a The first number.
+        @param b The second number.
         
-        @return {float} - The sum of the two numbers.
+        @return The sum of the two numbers.
         """
         return a + b
 
@@ -27,10 +42,10 @@ class NumberCombiner:
         """
         @brief Subtracts the second number from the first.
         
-        @param {float} a - The first number.
-        @param {float} b - The second number.
+        @param a The first number.
+        @param b The second number.
         
-        @return {float} - The difference between the two numbers.
+        @return The difference between the two numbers.
         """
         return a - b
 
@@ -38,10 +53,10 @@ class NumberCombiner:
         """
         @brief Multiplies two numbers together.
         
-        @param {float} a - The first number.
-        @param {float} b - The second number.
+        @param a The first number.
+        @param b The second number.
         
-        @return {float} - The product of the two numbers.
+        @return The product of the two numbers.
         """
         return a * b
 
@@ -49,11 +64,11 @@ class NumberCombiner:
         """
         @brief Divides the first number by the second.
         
-        @param {float} a - The numerator.
-        @param {float} b - The denominator (must not be zero).
+        @param a The numerator.
+        @param b The denominator (must not be zero).
         
-        @return {float} - The quotient of the division.
-        @throws ValueError - If b is zero.
+        @return The quotient of the division.
+        @throws ValueError If b is zero.
         """
         if b == 0:
             raise ValueError("Division by zero is not allowed.")
@@ -63,10 +78,10 @@ class NumberCombiner:
         """
         @brief Raises the first number to the power of the second.
         
-        @param {float} a - The base number.
-        @param {float} b - The exponent.
+        @param a The base number.
+        @param b The exponent.
         
-        @return {float} - The result of raising 'a' to the power of 'b'.
+        @return The result of raising a to the power of b.
         """
         return a ** b
 
@@ -74,11 +89,11 @@ class NumberCombiner:
         """
         @brief Returns the remainder of the division of the first number by the second.
         
-        @param {float} a - The dividend.
-        @param {float} b - The divisor (must not be zero).
+        @param a The dividend.
+        @param b The divisor (must not be zero).
         
-        @return {float} - The remainder of the division.
-        @throws ValueError - If b is zero.
+        @return The remainder of the division.
+        @throws ValueError If b is zero.
         """
         if b == 0:
             raise ValueError("Modulus by zero is not allowed.")
@@ -88,16 +103,16 @@ class NumberCombiner:
         """
         @brief Performs all arithmetic operations on the given numbers and returns a dictionary with results.
         
-        @param {float} a - The first number.
-        @param {float} b - The second number.
+        @param a The first number.
+        @param b The second number.
         
-        @return {dict} - A dictionary containing the results of all operations:
-            - "addition": Result of addition.
-            - "subtraction": Result of subtraction.
-            - "multiplication": Result of multiplication.
-            - "division": Result of division (or "undefined" if division by zero).
-            - "power": Result of exponentiation.
-            - "modulus": Result of modulus (or "undefined" if modulus by zero).
+        @return A dictionary containing the results of all operations:
+                - "addition": Result of addition.
+                - "subtraction": Result of subtraction.
+                - "multiplication": Result of multiplication.
+                - "division": Result of division (or "undefined" if division by zero).
+                - "power": Result of exponentiation.
+                - "modulus": Result of modulus (or "undefined" if modulus by zero).
         """
         results = {
             "addition": self.add(a, b),
@@ -111,8 +126,5 @@ class NumberCombiner:
 
 # Example usage:
 if __name__ == "__main__":
-    combiner = NumberCombiner()
-    num1, num2 = 10, 3
-    print("Class version:", NumberCombiner.version)
-    print("Supported operations:", NumberCombiner.supported_operations)
-    print(combiner.combine_all(num1, num2))
+    # Required instance attributes must be passed during object creation.
+    version = "1.0"
