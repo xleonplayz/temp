@@ -90,38 +90,45 @@ class TelegramBot:
                 print(f"Error: {e}")
                 await asyncio.sleep(5)
 
-# Example usage of check_new_messages function
-async def check_for_new_message():
-    TOKEN = "YOUR_BOT_TOKEN_HERE"
-    bot = TelegramBot(TOKEN)
-
+async def get_latest_message(token: str) -> Optional[str]:
+    """Simple function: give token, get latest message text back"""
+    bot = TelegramBot(token)
     latest_message = await bot.check_new_messages()
 
-    if latest_message:
-        print("New message found:")
-        if 'text' in latest_message:
-            user = latest_message.get('from', {})
-            username = user.get('username', 'Unknown')
-            text = latest_message['text']
-            print(f"[{username}] {text}")
-        return latest_message
-    else:
-        print("No new messages")
-        return None
+    if latest_message and 'text' in latest_message:
+        return latest_message['text']
+
+    return None
+
+async def send_reply(token: str, username: str, message: str) -> bool:
+    """Simple function: send message to username"""
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+
+    # Username should be chat_id or @username
+    if not username.startswith('@'):
+        username = f"@{username}"
+
+    data = {
+        'chat_id': username,
+        'text': message
+    }
+
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, json=data) as response:
+            if response.status == 200:
+                result = await response.json()
+                return result.get('ok', False)
+            return False
 
 async def main():
-    # Replace with your bot token
     TOKEN = "YOUR_BOT_TOKEN_HERE"
 
-    bot = TelegramBot(TOKEN)
-
-    # Option 1: Use the new check function
-    # latest_message = await bot.check_new_messages()
-    # if latest_message:
-    #     print("Latest message:", latest_message)
-
-    # Option 2: Start continuous polling
-    await bot.start_polling()
+    # Simple usage: get latest message
+    message_text = await get_latest_message(TOKEN)
+    if message_text:
+        print(f"Latest message: {message_text}")
+    else:
+        print("No new messages")
 
 if __name__ == "__main__":
     asyncio.run(main())
