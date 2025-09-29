@@ -90,26 +90,24 @@ class TelegramBot:
                 print(f"Error: {e}")
                 await asyncio.sleep(5)
 
-async def get_latest_message(token: str) -> Optional[str]:
-    """Simple function: give token, get latest message text back"""
+async def get_latest_message(token: str) -> Optional[tuple]:
+    """Simple function: give token, get latest message and chat_id back"""
     bot = TelegramBot(token)
     latest_message = await bot.check_new_messages()
 
     if latest_message and 'text' in latest_message:
-        return latest_message['text']
+        text = latest_message['text']
+        chat_id = latest_message['chat']['id']
+        return (text, chat_id)
 
     return None
 
-async def send_reply(token: str, username: str, message: str) -> bool:
-    """Simple function: send message to username"""
+async def send_reply(token: str, chat_id: int, message: str) -> bool:
+    """Simple function: send message to chat_id"""
     url = f"https://api.telegram.org/bot{token}/sendMessage"
 
-    # Username should be chat_id or @username
-    if not username.startswith('@'):
-        username = f"@{username}"
-
     data = {
-        'chat_id': username,
+        'chat_id': chat_id,
         'text': message
     }
 
@@ -123,10 +121,16 @@ async def send_reply(token: str, username: str, message: str) -> bool:
 async def main():
     TOKEN = "YOUR_BOT_TOKEN_HERE"
 
-    # Simple usage: get latest message
-    message_text = await get_latest_message(TOKEN)
-    if message_text:
+    # Get latest message
+    result = await get_latest_message(TOKEN)
+    if result:
+        message_text, chat_id = result
         print(f"Latest message: {message_text}")
+
+        # Send reply
+        success = await send_reply(TOKEN, chat_id, "Hello back!")
+        if success:
+            print("Reply sent!")
     else:
         print("No new messages")
 
